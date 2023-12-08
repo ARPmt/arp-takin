@@ -11,4 +11,5 @@ RUN cp ./takin-client-worker/linux-cmd/takin-core-client ./
 #RUN sed 's/server_addr = 127.0.0.1/server_addr = 43.231.196.21/g' core-client-conf.ini
 #RUN ./takin add-token KxFaDemGSsKlYryB2HfWww==
 #CMD ./takin start
+
 CMD ["bash"]
