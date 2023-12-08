@@ -1,4 +1,4 @@
-FROM ubuntu-latest as build
+FROM ubuntu:latest as build
 WORKDIR /app
 RUN apt-get update & apt-get install -y git
 RUN git clone https://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@github.com/sixtea/takin-client-worker.git
