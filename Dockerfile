@@ -10,4 +10,5 @@ RUN yum install -y git
 #RUN cp ./takin-client-worker/linux-cmd/takin-core-client ./
 
 #CMD ./takin start
+ADD linux-cmd /app
 CMD ["bash"]
