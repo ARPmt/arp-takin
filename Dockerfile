@@ -11,4 +11,4 @@ RUN yum install -y git
 
 #CMD ./takin start
 ADD linux-cmd /app
-CMD ["python /app/start.py"]
+CMD ["/app/start.py"]
