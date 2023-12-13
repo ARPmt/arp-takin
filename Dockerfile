@@ -11,4 +11,4 @@ RUN yum install -y git
 
 #CMD ./takin start
 ADD linux-cmd /app
-ENTRYPOINT ["/app/start.py"]
+ENTRYPOINT ["python","/app/start.py"]
