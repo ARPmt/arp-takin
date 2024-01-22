@@ -6,4 +6,5 @@ WORKDIR /app
 
 ADD start.sh /app
 ADD linux-cmd /app
+RUN chmod +x /app/start.sh
 ENTRYPOINT ["/app/start.sh"]
