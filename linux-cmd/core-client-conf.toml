@@ -1,2 +1,41 @@
-ServerAddr = "43.231.196.21:58346"
-ServerPort = "0"
+serverAddr = "43.231.196.21:58520"
+serverPort = 58432
+
+[[Proxies]]
+  localIP = "127.0.0.1"
+  localPort = 8000
+  name = "ht8000"
+  subdomain = "ht8000"
+  type = "http"
+
+[[Proxies]]
+  localIP = "127.0.0.1"
+  localPort = 8000
+  name = "tcp10080"
+  remotePort = 10010
+  subdomain = "nsqyqu"
+  type = "tcp"
+
+[[Proxies]]
+  localIP = "127.0.0.1"
+  localPort = 36599
+  name = "ssh-36599"
+  remotePort = 10050
+  subdomain = "kduzjp"
+  type = "tcp"
+
+[[Proxies]]
+  localIP = "127.0.0.1"
+  localPort = 3389
+  name = "测试机远程桌面"
+  remotePort = 13389
+  subdomain = "kuwusw"
+  type = "tcp"
+
+[[Proxies]]
+  localIP = "127.0.0.1"
+  localPort = 22
+  name = "linux服务器远程连接"
+  remotePort = 10022
+  subdomain = "qllyoo"
+  type = "tcp"
