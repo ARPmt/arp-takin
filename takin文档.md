@@ -11,6 +11,7 @@
 # takin 安装运行
 
   ##  在windows 系统上运行
+  
   ##  linux 系统上运行
   takin 支持在 centos/ubuntu/debian 等多版本的x86 and ARM 等通用linux 系统平台，用户可直接在HTTP/HTTPS/TCP应用服务器上下载运行或在应用所在内部网络中linux 服务器中运行，实现用户通过浏览器或应用工具公网问内网应用，无需借助任何代理或vpn组件；
   
@@ -63,8 +64,33 @@
 
   接下来，您可以在takin 平台生成域名及创建应用服务，完成应用访问
 
-    
   ##  macos 系统上运行
+
+  ##  Docker 中运行
+  takin支持docker 运行部署，为用户提供可公用的 takin docker 镜像，已更好的与容器内应用对接，并简化takin 安装运行；
+
+  ### 第一步：生成takin客户端所需的token
+  用户登录takin平台，在设备菜单的token页面生成token, token 生成完后，复制生成好的token 备用
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/23145634-c3f0-4626-bc90-a14a2386dd48)
+
+  ### 第二步：下载takin docker 镜像
+  ```
+  docker pull takin/takin:latest
+  ```
+
+  ### 第三步：从takin 镜像启动takin 容器，并传入 token 认证码及网络区域ID
+  
+  启动takin，传入 token 认证码及网络区域ID
+ 
+  ```
+  docker run -itd --name takin takin:latest  [token 认证码] [网络区域ID]
+  ```
+
+  ### takin 容器启动后，在takin 平台可正常显示takin 设备已上线
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/5ce5bd08-1f79-48e8-ab1f-3ba12ad42503)
+
+  接下来，您可以在takin 平台生成域名及创建应用服务，完成应用访问
+
   ##  openwrt 上运行
   
 # takin 平台用户手册
