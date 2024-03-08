@@ -29,7 +29,60 @@
 # takin 安装运行
 
   ##  在windows 系统上运行
-  
+  takin 为用户提供兼容 win7/win10/win11/win server 2012/win server 2016 等windows 系统的takin客户端，用户直接下载使用
+
+  ### 第一步：生成takin客户端所需的token
+  用户登录takin平台，在设备菜单的token页面生成token, token 生成完后，复制生成好的token 备用
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/23145634-c3f0-4626-bc90-a14a2386dd48)
+
+  ### 第二步：下载takin 
+  创建takin 的下载运行文件夹，如  d:\\takin
+  在takin 官网的 客户端下载页面，下载takin.exe 客户端到用户指定的目录下
+
+  ### 第三步：下载takin 的安装运行文件夹添加到系统环境变量中
+  以win10 系统 为列，将 takin 运行文件夹添加到系统环境变量中
+  右键 "我的电脑" -> 点击 "属性" ->  打开 "系统"界面
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/6e040705-332e-4b2a-a5e2-9c2e0e4b1073)
+  在"系统"界面 -> 点击 "系统保护" -> 打开 "系统属性"界面 -> 点击 "环境变量"
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/93c321b5-3cde-4df6-bd5d-f90cce081134)
+  在 "环境变量" 界面双击 "Path" -> 
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/e57d52b9-3e6e-448a-9a5d-ffd7250e545e)
+  然后 点击 "新建"，将 takin 的运行文件夹 添加到环境变量中，再点击 "确定" 完成添加系统环境变量操作
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/dfc6d8c3-3bde-46ae-a78c-4f72856acb3d)
+
+
+  ### 第四步：在windows 的DOS 界面下 完成takin 安装并进行认证并设置区域
+  右键电脑屏幕左下方的 系统图标，点击 "运行"
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/78152f04-4375-4c1e-8f06-3aa1a6359597)
+  在 "运行" 的输入框中，输入 "cmd" ，然后回车
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/e550e19a-07cc-4a97-9fea-335eb740dd76)
+
+  进入到 windows 的 DOS 命令行界面
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/6e0202b6-b4db-45d1-839d-3cfa34cd4bd9)
+
+  运行 token 认证
+  ```
+   takin.exe set-token [token]
+  ```
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/2bc26e04-8899-4cdf-822b-b4e91ab02b2c)
+
+
+  设置 网络区域ID
+  ```
+   takin.exe set-area [网络区域ID]
+  ```
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/536df602-c273-47ed-872b-59af2511ddc9)
+
+  启动 takin 
+  ```
+   takin.exe start
+  ```
+
+  ### takin 启动后，在takin 平台可正常显示takin 设备已上线
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/5ce5bd08-1f79-48e8-ab1f-3ba12ad42503)
+
+  接下来，您可以在takin 平台生成域名及创建应用服务，完成应用访问
+
   ##  linux 系统上运行
   takin 支持在 centos/ubuntu/debian 等多版本的x86 and ARM 等通用linux 系统平台，用户可直接在HTTP/HTTPS/TCP应用服务器上下载运行或在应用所在内部网络中linux 服务器中运行，实现用户通过浏览器或应用工具公网问内网应用，无需借助任何代理或vpn组件；
   
