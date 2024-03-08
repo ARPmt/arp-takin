@@ -37,16 +37,21 @@
 
   ### 第二步：下载takin 
   创建takin 的下载运行文件夹，如  d:\\takin
+  
   在takin 官网的 客户端下载页面，下载takin.exe 客户端到用户指定的目录下
 
   ### 第三步：下载takin 的安装运行文件夹添加到系统环境变量中
   以win10 系统 为列，将 takin 运行文件夹添加到系统环境变量中
+  
   右键 "我的电脑" -> 点击 "属性" ->  打开 "系统"界面
   ![image](https://github.com/ARPmt/arp-takin/assets/127104785/6e040705-332e-4b2a-a5e2-9c2e0e4b1073)
+  
   在"系统"界面 -> 点击 "系统保护" -> 打开 "系统属性"界面 -> 点击 "环境变量"
   ![image](https://github.com/ARPmt/arp-takin/assets/127104785/93c321b5-3cde-4df6-bd5d-f90cce081134)
+  
   在 "环境变量" 界面双击 "Path" -> 
   ![image](https://github.com/ARPmt/arp-takin/assets/127104785/e57d52b9-3e6e-448a-9a5d-ffd7250e545e)
+  
   然后 点击 "新建"，将 takin 的运行文件夹 添加到环境变量中，再点击 "确定" 完成添加系统环境变量操作
   ![image](https://github.com/ARPmt/arp-takin/assets/127104785/dfc6d8c3-3bde-46ae-a78c-4f72856acb3d)
 
