@@ -33,6 +33,7 @@
 
   ### 第一步：生成takin客户端所需的token
   用户登录takin平台，在设备菜单的token页面生成token, token 生成完后，复制生成好的token 备用
+  
   ![image](https://github.com/ARPmt/arp-takin/assets/127104785/23145634-c3f0-4626-bc90-a14a2386dd48)
 
   ### 第二步：下载takin 
@@ -44,26 +45,34 @@
   以win10 系统 为列，将 takin 运行文件夹添加到系统环境变量中
   
   右键 "我的电脑" -> 点击 "属性" ->  打开 "系统"界面
+  
   ![image](https://github.com/ARPmt/arp-takin/assets/127104785/6e040705-332e-4b2a-a5e2-9c2e0e4b1073)
   
   在"系统"界面 -> 点击 "系统保护" -> 打开 "系统属性"界面 -> 点击 "环境变量"
+  
   ![image](https://github.com/ARPmt/arp-takin/assets/127104785/93c321b5-3cde-4df6-bd5d-f90cce081134)
+
   
   在 "环境变量" 界面双击 "Path" -> 
+  
   ![image](https://github.com/ARPmt/arp-takin/assets/127104785/e57d52b9-3e6e-448a-9a5d-ffd7250e545e)
   
   然后 点击 "新建"，将 takin 的运行文件夹 添加到环境变量中，再点击 "确定" 完成添加系统环境变量操作
+  
   ![image](https://github.com/ARPmt/arp-takin/assets/127104785/dfc6d8c3-3bde-46ae-a78c-4f72856acb3d)
 
 
   ### 第四步：在windows 的DOS 界面下 完成takin 安装并进行认证并设置区域
   右键电脑屏幕左下方的 系统图标，点击 "运行"
+  
   ![image](https://github.com/ARPmt/arp-takin/assets/127104785/78152f04-4375-4c1e-8f06-3aa1a6359597)
   
   在 "运行" 的输入框中，输入 "cmd" ，然后回车
+  
   ![image](https://github.com/ARPmt/arp-takin/assets/127104785/e550e19a-07cc-4a97-9fea-335eb740dd76)
 
   进入到 windows 的 DOS 命令行界面
+  
   ![image](https://github.com/ARPmt/arp-takin/assets/127104785/6e0202b6-b4db-45d1-839d-3cfa34cd4bd9)
 
   运行 token 认证
