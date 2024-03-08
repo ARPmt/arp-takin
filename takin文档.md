@@ -59,6 +59,7 @@
   ### 第四步：在windows 的DOS 界面下 完成takin 安装并进行认证并设置区域
   右键电脑屏幕左下方的 系统图标，点击 "运行"
   ![image](https://github.com/ARPmt/arp-takin/assets/127104785/78152f04-4375-4c1e-8f06-3aa1a6359597)
+  
   在 "运行" 的输入框中，输入 "cmd" ，然后回车
   ![image](https://github.com/ARPmt/arp-takin/assets/127104785/e550e19a-07cc-4a97-9fea-335eb740dd76)
 
