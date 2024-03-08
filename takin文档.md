@@ -28,7 +28,7 @@
   
 # takin 安装运行
 
-  ##  在windows 系统上运行
+  ##  1. 在windows 系统上运行
   takin 为用户提供兼容 win7/win10/win11/win server 2012/win server 2016 等windows 系统的takin客户端，用户直接下载使用
 
   ### 第一步：生成takin客户端所需的token
@@ -98,7 +98,7 @@
 
   接下来，您可以在takin 平台生成域名及创建应用服务，完成应用访问
 
-  ##  linux 系统上运行
+  ##  2. linux 系统上运行
   takin 支持在 centos/ubuntu/debian 等多版本的x86 and ARM 等通用linux 系统平台，用户可直接在HTTP/HTTPS/TCP应用服务器上下载运行或在应用所在内部网络中linux 服务器中运行，实现用户通过浏览器或应用工具公网问内网应用，无需借助任何代理或vpn组件；
   
   takin 为用户提供一键式的安装脚本，脚本自动适配linux系统各版本，帮忙用户快速运行takin
@@ -150,9 +150,42 @@
 
   接下来，您可以在takin 平台生成域名及创建应用服务，完成应用访问
 
-  ##  macos 系统上运行
+  ##  3. macos 系统上运行
+  takin 为macos 用户提供免安装、一键下载运行的客户端，帮助用户实现快速开发、测试
 
-  ##  Docker 中运行
+  ### 第一步：生成takin客户端所需的token
+  用户登录takin平台，在设备菜单的token页面生成token, token 生成完后，复制生成好的token 备用
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/23145634-c3f0-4626-bc90-a14a2386dd48)
+
+  ### 第二步：下载takin macos 客户端
+  打开macos 终端CLI 界面，输入下载客户端命令
+  ```
+  sudo curl -o /usr/local/bin/takin  http://43.231.196.26:9000/core/takin && chmod +x  /usr/local/bin/takin
+  ```
+
+  ### 第三步：takin 进行认证并设置区域
+  在终端CLI界面，对takin 客户端进行token认证及网络区域设置
+  执行 token 认证
+  ```
+   takin set-token [token]
+  ```
+
+  设置 网络区域ID
+  ```
+   takin set-area [网络区域ID]
+  ```
+
+  takin 启动
+  ```
+   takin start
+  ```
+
+  ### takin 启动后，在takin 平台可正常显示takin 设备已上线
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/5ce5bd08-1f79-48e8-ab1f-3ba12ad42503)
+
+  接下来，您可以在takin 平台生成域名及创建应用服务，完成应用访问
+  
+  ##  4. Docker 中运行
   takin支持docker 运行部署，为用户提供可公用的 takin docker 镜像，已更好的与容器内应用对接，并简化takin 安装运行；
 
   ### 第一步：生成takin客户端所需的token
