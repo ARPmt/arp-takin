@@ -255,3 +255,80 @@
 
 # 典型应用
 
+## takin 在 NAS 上的应用
+
+### 在群晖上 运行 NAS
+
+  在群晖上，以docker 容器方式运行takin,代理 NAS 管理后台及NAS 上额其他业务系统
+
+  #### 第一步： 在群晖上安装 docker 套件
+
+  打开群晖管理后台，在后台界面在点击 "套件中心" 进入到 "套件中心" 管理界面，所搜 docker 点击 安装套件
+  
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/c9622168-e9f9-43ba-9a20-8c0665605ae2)
+
+  docker 套件安装完成后，在 套件中心 的已安装应用界面，可查看已经安装完成的 docker 
+  
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/421a27ff-9850-4fd3-9bf8-e9b731972eaf)
+
+  #### 第二步：下载 takin 的docker 镜像
+
+  进入到 docker 应用界面， 点击 "映像" 进入到 "映像"管理界面， 点击"新增", 选择 "从URL添加"， 输入 takin 镜像地址,点击"确定"等待完成taikin 下载
+  takin docker 镜像地址为： zeronews/zeronews
+
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/df108515-3fee-44dd-a069-6bf87d8d9792)
+
+  下载完成后，在镜像页面可以查看已下载成功的 takin 镜像
+  
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/0c3d63ff-abbf-4799-a2e9-d8420929ef2e)
+
+
+  #### 第三步：生成 takin 的认证token
+  
+  用户登录takin平台，在设备菜单的token页面生成token, token 生成完后，复制生成好的token 备用
+  
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/23145634-c3f0-4626-bc90-a14a2386dd48)
+
+  
+  #### 第四步：创建 taKin 容器，并启动
+
+  在 "容器" 菜单下，点击 "新增" 按钮，开始进行 takin 容器创建
+  
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/e5ee0b15-fd48-4efe-892f-9cfc5924a537)
+
+  选择 "takin 镜像"， 点击"下一步"
+  
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/0b89a2ce-9fb9-4b2b-9a40-830f0b2bf0b4)
+
+  在"网络" 设置页面，选择 "选择与 Docker Host相同的网络"， 再 "点击下一步"
+
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/c24cfa80-0773-40af-a3ac-034daeb901c3)
+
+  在 "常规设置" 页面，勾选 "启用自动重新启动"，然后 点击 "高级设置" 进入到高级设置界面
+  
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/37c0ee2c-6d05-4f15-8d99-0777ec5ae303)
+
+  在 "高级设置" 界面， 点击 "执行命令"，在 "命令" 输入框中，输入 token 及 网络区域ID，token 与 网络区域ID通过空格分隔
+  token, 网络区域ID 输入完成后，点击 "保存"， 回到"常规设置"页面，并点击 "下一步"
+
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/3cd5ce72-36ec-468c-b5ab-e8a9c092d8ca)
+
+  在 "存储空间设置" 界面，点击 "下一步"
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/4735479b-017d-4c82-b14e-10d6a478b3f1)
+
+
+  最后在 "摘要" 界面，确认token 与 网络区域ID 无误后，点击 "完成" 按钮，完成takin 容器创建
+  
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/5651a14a-3b35-4c47-a481-ee70b5859a08)
+
+  在 "容器" 界面，可以查看 已经创建完成，在运行的 takin 容器
+  
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/2e028dae-42af-4150-89e5-739171a48136)
+
+  在takin 平台可正常显示takin 容器设备已上线
+  
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/5ce5bd08-1f79-48e8-ab1f-3ba12ad42503)
+
+  
+
+
