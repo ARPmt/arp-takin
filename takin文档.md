@@ -467,6 +467,118 @@
   ![image](https://github.com/ARPmt/arp-takin/assets/127104785/5ce5bd08-1f79-48e8-ab1f-3ba12ad42503)
 
 
-  
 
+## 利用 takin 实现 nextcloud 私有网盘公网访问 
+
+本案例通过在 centos/nas 上通过容器部署 nextcloud 私有网盘，并结合takin 实现nextcloud 公网访问
+
+### 第一步： 在centos7 安装 nextcloud 容器，映射 5757 端口
+
+为nextcloud 创建 配置文件本地目录, 如：
+```
+mkdir -p /opt/nextcloud/html/config
+```
+启动 nextcloud 容器
+
+映射 5757 端口， 并映射 配置文件目录
+```
+docker run -d --restart=always --name nextcloud -p 5757:80 -v /opt/nextcloud/html/config:/var/www/html/config  nextcloud:latest
+```
+等待容器启动成功，可查看nextcloud 容器启动状态
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/8d25c219-6ce6-4e3d-9080-26e07bb70c89)
+
+容器启动成功后，浏览器打开 nextcloud 管理后台地址,地址为 主机IP:5757
+
+设置用户名、密码，然后点击 "开始安装"
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/588c9e30-6385-49e9-9ba2-b2a3eca5a10d)
+
+等待安装完成，进入到 nextcloud 仪表盘界面，表示 nextcloud 安装成功
+
+### 第二步：生成 takin 的认证token
   
+用户登录takin平台，在设备菜单的token页面生成token, token 生成完后，复制生成好的token 备用
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/23145634-c3f0-4626-bc90-a14a2386dd48)
+
+
+### 第三步： 部署 takin 容器
+
+启动 takin 容器， 传入 token 及网络区域ID 
+
+docker run -d --restart=always --net=host --name zeronews zeronews/zeronews [token] [网络区域ID]
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/5b7d49d8-9840-4fcb-ba82-6538ec2afcb4)
+
+等待 takin 容器 启动完成，可查看takin 容器状态
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/1485d70b-0b57-479c-98ef-442e227043bf)
+
+### 第三步： 在takin平台添加 nextcloud 应用
+
+用户登录takin平台，在 "资源" 菜单下的 "域名" 管理页面为 nextcloud 创建 公网可访问的域名
+
+如 域名地址： nextcloud
+
+  选择 对应的 takin 设备
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/77565373-71de-41e8-852d-1c7565cf5760)
+
+域名创建成功，在域名列表中可查看创建好的 nextcloud 域名访问地址
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/30b862c6-03d9-4346-be5d-da197e3b56d7)
+
+在 "应用" 菜单下，为 nextcloud 创建 应用
+
+应用名称： 如输入 nextcloud
+
+生效设备： 选择 对应的takin 容器客户端
+
+服务类型： 选择 HTTP 协议
+
+域名地址： 选择 上一步创建好的 nextcloud 域名
+
+内网地址： 输入 127.0.0.1
+
+内网端口： 输入 nextcloud 容器的地址 5757
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/d39fc2a4-a83d-489b-9a0f-b4eb85ee7926)
+
+nextcloud 应用创建完成后，在应用列表中可查看创建好的 nextcloud
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/80a9c118-7ac6-4836-ace6-19e67943d624)
+
+### 第四步： 修改 nextcloud 容器配置文件，添加 nextcloud 域名为信任域名 
+
+进入 主机 的 nextcloud 容器配置文件目录: /opt/nextcloud/html/config
+```
+cd /opt/nextcloud/html/config
+```
+修改配置 文件 config.php
+
+将 nextcloud 应用的访问域名 'nextcloud.test.takin.cc' 添加到 'trusted_domains' 配置下面
+
+参考如下：
+```
+ 'trusted_domains' => 
+  array (
+    0 => '172.16.1.30:5757',
+    1 => 'nextcloud.test.takin.cc',
+  ),
+```
+
+### 第五步: 浏览器或移动端访问 nextcloud 私有网盘
+
+浏览器访问， 用户可打开浏览器，输入 nextcloud 应用的域名地址，访问 私有 nextcloud 网盘
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/84d1f6d5-562f-4875-b7fe-e2ee2e952b54)
+
+
+移动端访问 nextcloud 
+
+![7379d5e0-47af-4303-80f1-b96bced9c247](https://github.com/ARPmt/arp-takin/assets/127104785/e9cd0c0b-bec6-448f-98b4-05f52a7338f7)
+
+
+
+
