@@ -387,6 +387,86 @@
   ![image](https://github.com/ARPmt/arp-takin/assets/127104785/5ce5bd08-1f79-48e8-ab1f-3ba12ad42503)
 
   
+### 在 NAS 通过portainer方式 运行 takin 
+
+  在群晖为例，引导用户安装 portainer，进而以容器方式运行 takin
+
+  portniner 容器镜像地址: portainer/portainer-ce
+
+  #### 第一步： 在群晖上安装 docker 套件
+
+  打开群晖管理后台，在后台界面在点击 "套件中心" 进入到 "套件中心" 管理界面，所搜 docker 点击 安装套件
+  
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/c9622168-e9f9-43ba-9a20-8c0665605ae2)
+
+  docker 套件安装完成后，在 套件中心 的已安装应用界面，可查看已经安装完成的 docker 
+  
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/421a27ff-9850-4fd3-9bf8-e9b731972eaf)
+
+  #### 第二步: 开启群晖 SSH
+  点击进入到 "控制面板" 界面，点击进入到 "终端机和SNMP"
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/f5dba9d3-120c-43a6-84fb-01c1ec1e484a)
+
+  勾选 "启用SSH功能"， 
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/62378590-9f03-4fc8-8214-9d123832e65c)
+
+  #### 第三步： SSH到群晖 CLI控制台，创建 portainer 容器
+
+  通过ssh 工具 远程连接 群晖
+  
+  通过 sudo 管理员权限创建 portainer 容器，并符加随docker 启动而启动
+  
+  sudo docker run -d --name=portainer --restart=always --priviledged=true -p 9000:9000 -v /var/run/docker.sock:/var/run/docker.sock portainer/portainer-ce:latest
+
+  portainer 容器运行正常后，可在 群晖的docker 套件中查看在运行的 portainer 容器
+
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/d0a0f1d3-debc-4c8d-94a9-6137138f474d)
+
+  #### 第四部： 设置portainer
+
+  浏览器中输入 portainer 的管理后台， 地址为 http://群晖IP:9000
+  
+  设置 密码， 账号为 admin
+  
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/534b739e-fce7-47d0-8fa9-9197010619f9)
+
+  #### 第五步：生成 takin 的认证token
+  
+  用户登录takin平台，在设备菜单的token页面生成token, token 生成完后，复制生成好的token 备用
+  
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/23145634-c3f0-4626-bc90-a14a2386dd48)
+
+  #### 第六步： 在portainer 中运行 takin 容器
+
+  登录 portainer 后台后，点击 "Containers"， 进入到 容器管理界面
+
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/04803eb5-3c66-426f-a8cc-dcb3f0955598)
+
+  在 "Container" 页面右上角 点击 "Add container" 添加 容器
+
+  输入 容器名称 ： takin
+  
+  image 地址: zeronews/zeronews:latest
+
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/cbffa552-a51b-4831-99ef-923292435e3a)
+
+  在 "Advanced container settings" 的 "Command & logging" 的选项中，将 token/网络区域ID 输入到 Command 的文本框中，空格分隔
+  
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/af12dc90-103c-4f3e-985e-7be63d161da2)
+
+  最后 点击 "deploy the container" 按钮，完成 takin 容器安装
+
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/7bee9e11-fdbd-4e12-b9f2-678a66e99e30)
+
+  takin 容器创建完成后，在容器管理界面，可看到正常运行的takin 容器
+
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/e8d2a4a3-3c64-4fe8-a927-a76387fa26f0)
+
+  用户登录takin 平台， 可正常显示takin 容器设备已上线
+  
+  ![image](https://github.com/ARPmt/arp-takin/assets/127104785/5ce5bd08-1f79-48e8-ab1f-3ba12ad42503)
 
 
+  
 
+  
