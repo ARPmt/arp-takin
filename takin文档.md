@@ -570,12 +570,17 @@ cd /opt/nextcloud/html/config
 
 ### 第五步: 浏览器或移动端访问 nextcloud 私有网盘
 
-浏览器访问， 用户可打开浏览器，输入 nextcloud 应用的域名地址，访问 私有 nextcloud 网盘
+浏览器访问， 用户可打开浏览器，输入 nextcloud 应用的域名地址 nextcloud.test.takin.cc，访问 私有 nextcloud 网盘
 
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/84d1f6d5-562f-4875-b7fe-e2ee2e952b54)
 
 
 移动端访问 nextcloud 
+
+输入 nextcloud 域名地址： nextcloud.test.takin.cc
+
+![091ddac7-08a0-4106-9366-89fd9d1047f7](https://github.com/ARPmt/arp-takin/assets/127104785/e348d3d8-d88d-4662-a549-4c3e460a8ed9)
+
 
 ![7379d5e0-47af-4303-80f1-b96bced9c247](https://github.com/ARPmt/arp-takin/assets/127104785/e9cd0c0b-bec6-448f-98b4-05f52a7338f7)
 
