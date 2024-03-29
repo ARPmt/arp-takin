@@ -503,7 +503,7 @@ docker run -d --restart=always --name nextcloud -p 5757:80 -v /opt/nextcloud/htm
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/23145634-c3f0-4626-bc90-a14a2386dd48)
 
 
-### 第三步： 部署 takin 容器
+### 第三步： 部署 takin 容器，网络采用 host-network 模式
 
 启动 takin 容器， 传入 token 及网络区域ID 
 
@@ -515,7 +515,7 @@ docker run -d --restart=always --net=host --name zeronews zeronews/zeronews [tok
 
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/1485d70b-0b57-479c-98ef-442e227043bf)
 
-### 第三步： 在takin平台添加 nextcloud 应用
+### 第四步： 在takin平台添加 nextcloud 应用
 
 用户登录takin平台，在 "资源" 菜单下的 "域名" 管理页面为 nextcloud 创建 公网可访问的域名
 
@@ -583,6 +583,112 @@ cd /opt/nextcloud/html/config
 
 
 ![7379d5e0-47af-4303-80f1-b96bced9c247](https://github.com/ARPmt/arp-takin/assets/127104785/e9cd0c0b-bec6-448f-98b4-05f52a7338f7)
+
+
+## 开发测试
+
+### 内网mysql 连接访问
+
+通过在centos7 系统以容器方式部署 mysql 、 takin 为列，实现用户从公有云、家、外出的时候可快速、安全的访问企业内部、家里的业务数据
+
+#### 第一步： 部署 mysql 容器
+
+为mysql 容器创建 配置文件目录及数据存储目录
+```
+配置文件： /opt/docker/mysql/config/my.cnf
+数据文件： /opt/docker/mysql/data
+
+mkdir -p /opt/docker/mysql/config
+mkdir -p /opt/docker/mysql/data
+
+mysql 端口号映射到主机  3306
+
+运行 mysql 容器
+docker run -d --name mysql -e MYSQL_ROOT_PASSWORD=xxxxxxxxxx -v /opt/docker/mysql/config/my.cnf:/etc/my.cnf -v /opt/docker/mysql/data:/var/lib/mysql  -p 3306:3306 mysql:latest
+
+```
+
+查看当前运行的 mysql 容器
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/a396e183-bd8d-4750-99f0-4b0744ecc165)
+
+#### 第二步：生成 takin 的认证token
+  
+用户登录takin平台，在设备菜单的token页面生成token, token 生成完后，复制生成好的token 备用
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/23145634-c3f0-4626-bc90-a14a2386dd48)
+
+#### 第三步：部署 zeronews 容器，网络采用 host-network 模式
+
+采用 host-network 容器网络模式，部署 zeronews 容器，并传入 生成好的 token 及 网络区域ID
+
+启动 takin 容器， 传入 token 及网络区域ID 
+
+docker run -d --restart=always --net=host --name zeronews zeronews/zeronews [token] [网络区域ID]
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/5b7d49d8-9840-4fcb-ba82-6538ec2afcb4)
+
+等待 takin 容器 启动完成，可查看takin 容器状态
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/1485d70b-0b57-479c-98ef-442e227043bf)
+
+### 第四步： 在takin平台添加 mysql 连接应用
+
+* 为mysql 分配公网可访问的TCP 端口地址
+  
+用户登录takin平台，在 "资源" 菜单下的 "端口" 管理页面为 mysql 创建 公网可访问的TCP 域名端口地址
+
+如 设置的公网端口地址为： 13306
+
+选择 对应的 takin 设备
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/27935488-7551-4cf0-909e-3ccd6fca6726)
+
+mysql 公网访问域名端口创建成功，在端口列表中可查看用于mysql 连接的 TCP 域名端口地址
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/1dedfa48-5df8-4171-a622-d2ff179724f4)
+
+* 为 mysql 创建 公网应用
+  
+在 "应用" 菜单下，为 mysql 创建 应用
+
+应用名称： 如输入 mysql
+
+生效设备： 选择 创建好的的takin 容器客户端
+
+服务类型： 选择 TCP 协议
+
+域名地址： 选择 上一步创建好的 mysql TCP域名端口
+
+内网地址： 输入 127.0.0.1
+
+内网端口： 输入 mysql 容器的地址 3306
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/fc353aa6-9a74-4bb7-8cea-775a5e709d78)
+
+mysql 应用创建完成后，在应用列表中可查看创建好的 mysql 应用
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/b24bad24-b5d0-4334-a8b7-8181a2c44225)
+
+### 第五步： 通过mysql 客户端 连接 mysql 数据库 
+
+* 使用 SQLyog 连接 mysql
+
+在mysql Host Address 输入框输入: mysql 的公网域名地址
+
+在端口 输入框中输入：公网端口号
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/1c3fc779-abe5-4c82-b961-8b61155c99cd)
+
+* 使用linux 系统mysql 工具连接 mysql
+在 linux 系统 shell 命令界面输入
+```
+mysql -uroot -h rjiszs.test.takin.cc -P 13306 -p
+
+-h: 后接  mysql 的公网域名地址
+-P： 后接 mysql 的公网TCO端口
+
+```
 
 
 
