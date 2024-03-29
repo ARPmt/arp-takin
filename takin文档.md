@@ -674,9 +674,9 @@ mysql 应用创建完成后，在应用列表中可查看创建好的 mysql 应�
 
 * 使用 SQLyog 连接 mysql
 
-在mysql Host Address 输入框输入: mysql 的公网域名地址
+在mysql Host Address 输入框输入: mysql 的公网域名地址 rjiszs.test.takin.cc
 
-在端口 输入框中输入：公网端口号
+在端口 输入框中输入：公网端口号  13306
 
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/1c3fc779-abe5-4c82-b961-8b61155c99cd)
 
@@ -685,11 +685,12 @@ mysql 应用创建完成后，在应用列表中可查看创建好的 mysql 应�
 ```
 mysql -uroot -h rjiszs.test.takin.cc -P 13306 -p
 
--h: 后接  mysql 的公网域名地址
--P： 后接 mysql 的公网TCO端口
+-h: 后接  mysql 的公网域名地址 rjiszs.test.takin.cc
+-P： 后接 mysql 的公网TCO端口  13306
 
 ```
 
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/8a04056d-2baf-487c-892a-a7a6605150e5)
 
 
 
