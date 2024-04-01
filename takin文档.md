@@ -969,7 +969,22 @@ gitlab 应用创建完成后，在应用列表中可查看创建好的 gitlab �
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/71ea063b-fa56-4d63-bf1f-78ae0eaa9220)
 
 
-#### 第五步： 通过tortoise 客户端 连接 svn server 
+#### 第五步： 设置 gitlab git clone  https 地址
+
+登录 gitlab 管理平台，打开浏览器，输入生成好的 gitlab https 域名进入到 gitlab 管理界面，输入用户 密码
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/ffe8d47f-48c5-4b03-8490-e5535350744d)
+
+gitlab 登录成功
+q
+
+点击 "admin-area" 进入到 admin 设置，在 admin 界面 的 "setting - General" 菜单下， 
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/643f97b3-b4a0-4152-8c16-64320c60295b)
+
+进入到 "Visibility and access controls", 将gitlab 的公网域名地址 输入到 "Custom Git clone URL for HTTP(S)"
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/714dae18-f5b5-4bc2-b27f-ca65c697bde6)
 
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/918a40c4-6773-47fd-aa47-45816003073e)
 
