@@ -971,14 +971,15 @@ gitlab 应用创建完成后，在应用列表中可查看创建好的 gitlab �
 
 #### 第五步： 设置 gitlab git clone  https 地址
 
-登录 gitlab 管理平台，打开浏览器，输入生成好的 gitlab https 域名进入到 gitlab 管理界面，输入用户 密码
+* 登录 gitlab 管理平台，配置gitlab
+
+打开浏览器，输入生成好的 gitlab https 域名进入到 gitlab 管理界面，输入用户 密码
 
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/ffe8d47f-48c5-4b03-8490-e5535350744d)
 
 gitlab 登录成功
 
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/58ff20f0-1654-4fc3-9610-2ddee01a4988)
-
 
 点击 "admin-area" 进入到 admin 设置，在 admin 界面 的 "setting - General" 菜单下， 
 
@@ -988,11 +989,23 @@ gitlab 登录成功
 
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/714dae18-f5b5-4bc2-b27f-ca65c697bde6)
 
-创建 gitlan 测试工程
+* 创建 gitlab  测试 project
+
+创建 tc , 步骤如下：
 
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/6566142d-7a21-49cf-896f-9eeef15389ce)
 
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/b6b3fea3-12f0-4554-9fce-46acaa88447e)
 
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/4661e878-44c8-45d6-b78f-275273ca3b28)
+
+查看 创建好的 tc project
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/f57a09c4-764b-45dd-b554-4ba3d7ea8482)
+
+进入到 tc project，查看 git clone 地址
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/b24b7b17-1309-43dd-a03b-5840a19e8826)
+
+
 
