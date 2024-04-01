@@ -693,4 +693,102 @@ mysql -uroot -h rjiszs.test.takin.cc -P 13306 -p
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/8a04056d-2baf-487c-892a-a7a6605150e5)
 
 
+### 内网redis 连接访问
+
+通过在centos7 系统以容器方式部署redis 为列，演示用户怎样通过互联网、公有云访问内部redis 数据库
+
+#### 第一步： 部署 redis 容器
+
+为redis 容器创建 配置文件目录及数据存储目录
+```
+配置文件： /opt/docker/redis/conf/redis.conf
+数据目录： /opt/docker/redis/data
+
+配置文件内容参考：
+  requirepass takinwqz@#1510
+  bind 127.0.0.1
+  protected-mode on
+  daemonize no
+  appendonly yes
+
+mysql 端口号映射到主机  6379
+
+运行 redis 容器
+docker run -d --restart=always --name redis -v /opt/docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /opt/docker/redis/data:/data  -p 6379:6379 redis
+
+```
+
+查看当前运行的 redis 容器
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/3052e2fa-b812-4f64-8ea6-b406cfe1af81)
+
+
+#### 第二步：生成 takin 的认证token
+  
+用户登录takin平台，在设备菜单的token页面生成token, token 生成完后，复制生成好的token 备用
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/23145634-c3f0-4626-bc90-a14a2386dd48)
+
+#### 第三步：部署 zeronews 容器，网络采用 host-network 模式
+
+采用 host-network 容器网络模式，部署 zeronews 容器，并传入 生成好的 token 及 网络区域ID
+
+启动 takin 容器， 传入 token 及网络区域ID 
+
+docker run -d --restart=always --net=host --name zeronews zeronews/zeronews [token] [网络区域ID]
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/5b7d49d8-9840-4fcb-ba82-6538ec2afcb4)
+
+等待 takin 容器 启动完成，可查看takin 容器状态
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/1485d70b-0b57-479c-98ef-442e227043bf)
+
+### 第四步： 在takin平台添加 redis 连接应用
+
+* 为redis分配公网可访问的TCP 端口地址
+  
+用户登录takin平台，在 "资源" 菜单下的 "端口" 管理页面为 redis 创建 公网可访问的TCP 域名端口地址
+
+如 设置的公网端口地址为： 16379
+
+选择 对应的 takin 设备
+
+
+
+mysql 公网访问域名端口创建成功，在端口列表中可查看用于mysql 连接的 TCP 域名端口地址
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/1dedfa48-5df8-4171-a622-d2ff179724f4)
+
+* 为 redis 创建 公网应用
+  
+在 "应用" 菜单下，为 mysql 创建 应用
+
+应用名称： 如输入 redis
+
+生效设备： 选择 创建好的的takin 容器客户端
+
+服务类型： 选择 TCP 协议
+
+域名地址： 选择 上一步创建好的 redis TCP域名端口
+
+内网地址： 输入 127.0.0.1
+
+内网端口： 输入 redis 容器的地址 16379
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/2f891e0a-ba48-4135-afd9-55325e2c1fc9)
+
+redis 应用创建完成后，在应用列表中可查看创建好的 redis 应用
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/193fd97d-9b94-4af1-a731-3f6671d75fc0)
+
+### 第五步： 通过 redis 客户端 连接 redis 数据库 
+
+* 使用 Redis Desktop Manager 连接 redis
+
+在Host 输入框输入: redis 的公网域名地址 gczcyq.test.takin.cc
+
+在Port 输入框中输入：公网端口号  16379
+
+<img width="1257" alt="WeChatWorkScreenshot_fed31577-3e9e-4f5b-bfed-798bf6d730e1" src="https://github.com/ARPmt/arp-takin/assets/127104785/8f859db9-1a95-4a60-9867-5415da13660c">
+
 
