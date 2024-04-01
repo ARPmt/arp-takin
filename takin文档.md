@@ -888,3 +888,88 @@ svn 应用创建完成后，在应用列表中可查看创建好的 svn 应用
 #### 第五步： 通过tortoise 客户端 连接 svn server 
 
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/918a40c4-6773-47fd-aa47-45816003073e)
+
+
+### gitlab 私有仓库 公网访问
+
+通过在centos7 系统以容器方式部署 gitlab 为列，演示用户怎样通过互联网进行 gitlab 私有仓 代码版本发布与更新
+
+#### 第一步： 部署 gitlab 容器
+
+为 gitlab 创建本地目录
+
+```
+mkdir -p /opt/docker/gitlab/data
+mkdir -p /opt/docker/gitlab/config
+mkdir -p /opt/docker/gitlab/log
+
+svn 端口号映射:
+    80：80
+    2222：22
+
+运行 svn 容器
+ docker run -d --restart=always --name=gitlab -p 80:80 -p 2222:22 -v /opt/docker/gitlab/data:/var/opt/gitlab -v /opt/docker/gitlab/config:/etc/gitlab -v /opt/docker/gitlab:/var/log/gitlab -v /etc/localtime:/etc/localtime gitlab/gitlab-ce:latest
+
+查看root 密码
+docker exec -it gitlab grep 'Password:' /etc/gitlab/initial_root_password
+
+```
+
+查看创建好  gitlab 容器
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/9af9062d-3854-4ff4-a51d-c80803b74f3b)
+
+#### 第二步：生成 takin 的认证token
+  
+用户登录takin平台，在设备菜单的token页面生成token, token 生成完后，复制生成好的token 备用
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/23145634-c3f0-4626-bc90-a14a2386dd48)
+
+#### 第三步：部署 zeronews 容器，网络采用 host-network 模式
+
+采用 host-network 容器网络模式，部署 zeronews 容器，并传入 生成好的 token 及 网络区域ID
+
+启动 takin 容器， 传入 token 及网络区域ID 
+
+docker run -d --restart=always --net=host --name zeronews zeronews/zeronews [token] [网络区域ID]
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/5b7d49d8-9840-4fcb-ba82-6538ec2afcb4)
+
+等待 takin 容器 启动完成，可查看takin 容器状态
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/1485d70b-0b57-479c-98ef-442e227043bf)
+
+#### 第四步： 在takin平台添加 gitlab https 应用
+
+* 为 gitlab 创建公网访问域名地址
+  
+用户登录takin平台，在 "资源" 菜单下的 "域名" 管理页面为 git 创建 公网可访问的域名
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/1dc9474a-3f12-4523-a290-173a59f762ac)
+
+* 为 gitlab 创建 公网应用
+  
+在 "应用" 菜单下，为 gitlab 创建 应用
+
+应用名称： 如输入 gitlab
+
+生效设备： 选择 创建好的的takin 容器客户端
+
+服务类型： 选择 https 协议
+
+域名地址： 选择 上一步创建好的 gitlab 域名
+
+内网地址： 输入 127.0.0.1
+
+内网端口： 输入 gitlab 容器的端口 80
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/75b88364-07fe-459e-81ee-e10d05ac5c3b)
+
+gitlab 应用创建完成后，在应用列表中可查看创建好的 gitlab 应用
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/71ea063b-fa56-4d63-bf1f-78ae0eaa9220)
+
+
+#### 第五步： 通过tortoise 客户端 连接 svn server 
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/918a40c4-6773-47fd-aa47-45816003073e)
+
