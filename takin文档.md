@@ -1007,5 +1007,20 @@ gitlab 登录成功
 
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/b24b7b17-1309-43dd-a03b-5840a19e8826)
 
+#### 第六步， 从客户端git clone 
+
+在一台能访问互联网的 linux 系统，通过 git clone 拉取代码
+
+git clone https://gitlab.test.takin.cc/root/tc.git
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/a77c1496-10ad-4744-9bc2-e734195fd617)
+
+
+通过 sourcetree 进行版本控制
+
+打开sourcetree - 新增 - clone , 根据弹窗 输入 账号、密码
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/a5f676ee-c1a3-4c91-a071-97b4d26ab36b)
+
 
 
