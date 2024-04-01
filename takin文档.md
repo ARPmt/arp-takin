@@ -990,7 +990,9 @@ gitlab 登录成功
 
 创建 gitlan 测试工程
 
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/6566142d-7a21-49cf-896f-9eeef15389ce)
 
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/b6b3fea3-12f0-4554-9fce-46acaa88447e)
 
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/4661e878-44c8-45d6-b78f-275273ca3b28)
 
