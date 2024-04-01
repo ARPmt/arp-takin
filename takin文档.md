@@ -885,4 +885,6 @@ svn 应用创建完成后，在应用列表中可查看创建好的 svn 应用
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/f61744cc-a645-400b-846b-1c52f284d8d9)
 
 
+#### 第五步： 通过tortoise 客户端 连接 svn server 
 
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/918a40c4-6773-47fd-aa47-45816003073e)
