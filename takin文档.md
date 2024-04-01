@@ -711,7 +711,7 @@ mysql -uroot -h rjiszs.test.takin.cc -P 13306 -p
   daemonize no
   appendonly yes
 
-mysql 端口号映射到主机  6379
+redis 端口号映射到主机  6379
 
 运行 redis 容器
 docker run -d --restart=always --name redis -v /opt/docker/redis/conf/redis.conf:/etc/redis/redis.conf -v /opt/docker/redis/data:/data  -p 6379:6379 redis
@@ -792,3 +792,41 @@ redis 应用创建完成后，在应用列表中可查看创建好的 redis 应�
 <img width="1257" alt="WeChatWorkScreenshot_fed31577-3e9e-4f5b-bfed-798bf6d730e1" src="https://github.com/ARPmt/arp-takin/assets/127104785/8f859db9-1a95-4a60-9867-5415da13660c">
 
 
+### 内网 SVN 仓库 公网访问
+
+通过在centos7 系统以容器方式部署 SVN 为列，演示用户怎样通过互联网进行 SVN 代码版本发布与更新
+
+#### 第一步： 部署 SVN 容器
+
+为SVN 容器创建 配置文件目录及数据存储目录
+
+```
+svn文件： /opt/docker/svn/
+mkdir -p /opt/docker/svn
+
+svn 端口号映射:
+    3690 -- 3690
+
+运行 svn 容器
+docker run -d --name svn-server -v /opt/docker/svn:/var/opt/svn -p 3690:3690 garethflowers/svn-server
+
+创建 SVN 仓库 repo
+docker exec -it svn-server svnadmin create repo
+
+修改 svn 配置
+/opt/docker/svn/repo/conf/svnserve.conf  
+  anon-access = none     
+  auth-access = write
+  password-db = passwd
+  authz-db = authz
+
+创建 svn 用户
+/opt/docker/svn/repo/conf/passwd
+ [user] # 标签下添加用户
+   user01 = 123456
+
+用户授权
+/opt/docker/svn/repo/conf/authz
+[repo:/]
+  user01 = rw
+```
