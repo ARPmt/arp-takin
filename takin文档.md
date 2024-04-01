@@ -976,7 +976,9 @@ gitlab 应用创建完成后，在应用列表中可查看创建好的 gitlab �
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/ffe8d47f-48c5-4b03-8490-e5535350744d)
 
 gitlab 登录成功
-q
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/58ff20f0-1654-4fc3-9610-2ddee01a4988)
+
 
 点击 "admin-area" 进入到 admin 设置，在 admin 界面 的 "setting - General" 菜单下， 
 
@@ -986,5 +988,5 @@ q
 
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/714dae18-f5b5-4bc2-b27f-ca65c697bde6)
 
-![image](https://github.com/ARPmt/arp-takin/assets/127104785/918a40c4-6773-47fd-aa47-45816003073e)
+创建 测试工程
 
