@@ -467,12 +467,12 @@
   ![image](https://github.com/ARPmt/arp-takin/assets/127104785/5ce5bd08-1f79-48e8-ab1f-3ba12ad42503)
 
 
-
-## 利用 takin 实现 nextcloud 私有网盘公网访问 
+## 文件分享
+### 利用 takin 实现 nextcloud 私有网盘公网访问 
 
 本案例通过在 centos/nas 上通过容器部署 nextcloud 私有网盘，并结合takin 实现nextcloud 公网访问
 
-### 第一步： 在centos7 安装 nextcloud 容器，映射 5757 端口
+#### 第一步： 在centos7 安装 nextcloud 容器，映射 5757 端口
 
 为nextcloud 创建 配置文件本地目录, 如：
 ```
@@ -496,14 +496,14 @@ docker run -d --restart=always --name nextcloud -p 5757:80 -v /opt/nextcloud/htm
 
 等待安装完成，进入到 nextcloud 仪表盘界面，表示 nextcloud 安装成功
 
-### 第二步：生成 takin 的认证token
+#### 第二步：生成 takin 的认证token
   
 用户登录takin平台，在设备菜单的token页面生成token, token 生成完后，复制生成好的token 备用
 
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/23145634-c3f0-4626-bc90-a14a2386dd48)
 
 
-### 第三步： 部署 takin 容器，网络采用 host-network 模式
+#### 第三步： 部署 takin 容器，网络采用 host-network 模式
 
 启动 takin 容器， 传入 token 及网络区域ID 
 
@@ -515,7 +515,7 @@ docker run -d --restart=always --net=host --name zeronews zeronews/zeronews [tok
 
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/1485d70b-0b57-479c-98ef-442e227043bf)
 
-### 第四步： 在takin平台添加 nextcloud 应用
+#### 第四步： 在takin平台添加 nextcloud 应用
 
 用户登录takin平台，在 "资源" 菜单下的 "域名" 管理页面为 nextcloud 创建 公网可访问的域名
 
@@ -549,7 +549,7 @@ nextcloud 应用创建完成后，在应用列表中可查看创建好的 nextcl
 
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/80a9c118-7ac6-4836-ace6-19e67943d624)
 
-### 第四步： 修改 nextcloud 容器配置文件，添加 nextcloud 域名为信任域名 
+#### 第四步： 修改 nextcloud 容器配置文件，添加 nextcloud 域名为信任域名 
 
 进入 主机 的 nextcloud 容器配置文件目录: /opt/nextcloud/html/config
 ```
@@ -568,7 +568,7 @@ cd /opt/nextcloud/html/config
   ),
 ```
 
-### 第五步: 浏览器或移动端访问 nextcloud 私有网盘
+#### 第五步: 浏览器或移动端访问 nextcloud 私有网盘
 
 浏览器访问， 用户可打开浏览器，输入 nextcloud 应用的域名地址 nextcloud.test.takin.cc，访问 私有 nextcloud 网盘
 
@@ -583,6 +583,106 @@ cd /opt/nextcloud/html/config
 
 
 ![7379d5e0-47af-4303-80f1-b96bced9c247](https://github.com/ARPmt/arp-takin/assets/127104785/e9cd0c0b-bec6-448f-98b4-05f52a7338f7)
+
+
+### 利用 takin 部署 公网可访问的 owncloud 私有云盘 
+
+在 centos 上通过容器部署 owncloud 私有网盘，并结合takin 实现 owncloud 公网访问
+
+#### 第一步： 在centos7 安装 owncloud 容器，映射 80 端口
+
+为 owncloud 创建 配置文件本地目录, 如：
+```
+mkdir -p /opt/docker/owncloud/web
+```
+启动 owncloud 容器
+
+映射 80 端口， 并映射 配置文件目录
+```
+ docker run -itd --name owncloud --restart always -p 80:80 -v /opt/docker/owncloud/web:/var/www/html/data  owncloud
+
+```
+等待容器启动成功，可查看 owncloud 容器启动状态
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/c9863f83-3aa4-4861-a78d-7372bb73db8b)
+
+#### 第二步：生成 takin 的认证token
+  
+用户登录takin平台，在设备菜单的token页面生成token, token 生成完后，复制生成好的token 备用
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/23145634-c3f0-4626-bc90-a14a2386dd48)
+
+
+#### 第三步： 部署 takin 容器，网络采用 host-network 模式
+
+启动 takin 容器， 传入 token 及网络区域ID 
+
+docker run -d --restart=always --net=host --name zeronews zeronews/zeronews [token] [网络区域ID]
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/5b7d49d8-9840-4fcb-ba82-6538ec2afcb4)
+
+等待 takin 容器 启动完成，可查看takin 容器状态
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/1485d70b-0b57-479c-98ef-442e227043bf)
+
+#### 第四步： 在takin平台添加 owncloud 应用
+
+用户登录takin平台，在 "资源" 菜单下的 "域名" 管理页面为 owncloud 创建 公网可访问的域名
+
+如 域名地址： owncloud
+
+  选择 对应的 takin 设备
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/6771903f-bf06-445e-b215-cced5b7a8379)
+
+
+域名创建成功，在域名列表中可查看创建好的 owncloud 域名访问地址
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/410d8ab4-eb4c-498f-9200-a7b0e21b629b)
+
+在 "应用" 菜单下，为 owncloud 创建 应用
+
+应用名称： 如输入 owncloud
+
+生效设备： 选择 对应的takin 容器客户端
+
+服务类型： 选择 HTTP 协议
+
+域名地址： 选择 上一步创建好的 owncloud 域名
+
+内网地址： 输入 127.0.0.1
+
+内网端口： 输入 owncloud 容器的地址 80
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/bcad6db6-c581-4e21-8ee0-e3ab5066749b)
+
+owncloud 应用创建完成后，在应用列表中可查看创建好的 owncloud
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/593b2c75-c4bd-4808-8cd3-ebc490250d1c)
+
+#### 第四步： 浏览器打开 owncloud 域名地址并安装
+
+浏览器输入为 owncloud 管理后台地址分配的 域名地址：http://owncloud.test.takin.cc/
+
+设置用户名、密码，然后点击 "开始安装"， 选择 SQLite 数据进行安装
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/f2f1d903-030f-49be-90ef-cf9218da7553)
+
+等待安装完成，进入到 owncloud 仪表盘界面，表示 owncloud 安装成功
+
+
+### 第五步: 桌面客户端访问 owncloud 私有网盘
+
+打开 owncloud 桌面客户端 
+
+输入 owncloud 域名地址： http://owncloud.test.takin.cc/
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/53da2547-2b55-41b5-9a53-b7244088c557)
+
+owncloud 服务端验证成功后，进入到 输入用户、密码界面，验证成功后，进入到 owncloud 客户端界面
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/a31c5b91-d76b-4268-9473-8ce21e513e11)
+
 
 
 ## 开发测试
