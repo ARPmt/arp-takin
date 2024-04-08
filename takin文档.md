@@ -1124,3 +1124,152 @@ git clone https://gitlab.test.takin.cc/root/tc.git
 
 
 
+### 通过takin部署公网可访问的VLC UDP流媒体服务
+
+企业在内网通过VLC部署UDP测试流媒体服务时，只能通过企业内网访问，当研发、测试员工外出时，无法对内部流媒体服务进行研发、测试
+
+#### 访问示意图
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/33a4dde2-46f5-48e6-a174-74c7f7405b71)
+
+
+#### 先决条件
+
+1. 确保用户已经在 Takin SaaS 平台上已完成用户注册登录及用户实名或企业实名认证，Takin 为注册的个人或企业账户提供免费使用2个代理服务的权益。
+
+#### 内网部署VLC 流媒体服务器
+
+##### 1. 在windows 上下载安装 VLC 客户端软件并安装，安装完成后打开 VLC 客户端程序， 打开  " 媒体 - 流 "
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/ba82f078-f64d-463a-b0f7-3b8b9bd97b30)
+
+##### 2. 点击 “添加” 按钮选择流媒体文件， 然后点击“串流”
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/a8c45b06-d2e0-4f30-8365-e11cf5c43b5a)
+
+##### 3. 点击下一步到流输出界面，下拉框 选择 UDP（legacy）模式
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/440ef905-4991-45d0-a889-a8fa101ad78f)
+
+##### 4. 点击下一个到目标设置界面，设置IP地址及UDP端口号， IP地址为本机IP地址
+   
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/c41d4138-06ec-4c04-99b1-ba84cc938c66)
+
+##### 5. 点击下一个到再下一个，到选项设置界面，点击流完成服务器设置
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/76ca8b84-5eeb-4331-956f-7ec688f571cf)
+
+#### 创建Takin 流媒体服务器代理服务
+
+##### 1. 生成takin客户端所需的token
+   
+用户登录takin平台，在设备菜单的token页面生成token, token 生成完后，复制生成好的token 备用
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/23145634-c3f0-4626-bc90-a14a2386dd48)
+
+#####  2：下载takin 
+创建takin 的下载运行文件夹，如  d:\\takin
+
+在takin 官网的 客户端下载页面，下载takin.exe 客户端到用户指定的目录下
+
+#####  3：下载takin 的安装运行文件夹添加到系统环境变量中
+以win10 系统 为列，将 takin 运行文件夹添加到系统环境变量中
+
+右键 "我的电脑" -> 点击 "属性" ->  打开 "系统"界面
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/6e040705-332e-4b2a-a5e2-9c2e0e4b1073)
+
+在"系统"界面 -> 点击 "系统保护" -> 打开 "系统属性"界面 -> 点击 "环境变量"
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/93c321b5-3cde-4df6-bd5d-f90cce081134)
+
+在 "环境变量" 界面双击 "Path" -> 
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/e57d52b9-3e6e-448a-9a5d-ffd7250e545e)
+
+然后 点击 "新建"，将 takin 的运行文件夹 添加到环境变量中，再点击 "确定" 完成添加系统环境变量操作
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/dfc6d8c3-3bde-46ae-a78c-4f72856acb3d)
+
+
+##### 4. 在windows 的DOS 界面下 完成takin 安装并进行认证并设置区域
+右键电脑屏幕左下方的 系统图标，点击 "运行"
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/78152f04-4375-4c1e-8f06-3aa1a6359597)
+
+在 "运行" 的输入框中，输入 "cmd" ，然后回车
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/e550e19a-07cc-4a97-9fea-335eb740dd76)
+
+进入到 windows 的 DOS 命令行界面
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/6e0202b6-b4db-45d1-839d-3cfa34cd4bd9)
+
+运行 token 认证
+```
+ takin.exe set-token [token]
+```
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/2bc26e04-8899-4cdf-822b-b4e91ab02b2c)
+
+
+设置 网络区域ID
+```
+ takin.exe set-area [网络区域ID]
+```
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/536df602-c273-47ed-872b-59af2511ddc9)
+
+启动 takin 
+```
+ takin.exe start
+```
+
+##### 5. takin 启动后，在takin 平台可正常显示takin 设备已上线
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/5ce5bd08-1f79-48e8-ab1f-3ba12ad42503)
+
+##### 6. 在takin平台添加 vlc 流媒体应用
+
+* 为vlc分配公网可访问的udp 端口地址
+  
+用户登录takin平台，在 "资源" 菜单下的 "端口" 管理页面为 vlc 创建 公网可访问的 UDP 域名端口地址
+
+如 设置的 UDP 公网端口地址为： 10001
+
+选择 对应的 windows takin 设备
+
+vlc 流媒体公网访问域名端口创建成功，在端口列表中可查看用于 vlc 连接的 UDP 域名端口地址
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/8bc57f14-5c8e-481f-9416-680523524309)
+
+* 为 vlc 创建 公网连接的应用
+  
+在 "应用" 菜单下，为 vlc 创建 应用
+
+应用名称： 如输入 vlc
+
+生效设备： 选择 创建好的的takin windows 客户端
+
+服务类型： 选择 UDP 协议
+
+域名地址： 选择 上一步创建好的 vlc UDP 域名端口
+
+内网地址： 输入 127.0.0.1
+
+内网端口： 输入 vlc 应用的udp端口,如 1234
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/1092fe94-3186-45de-adc1-996ef0d62a05)
+
+vlc 应用创建完成后，在应用列表中可查看创建好的 vlc 应用
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/f61744cc-a645-400b-846b-1c52f284d8d9)
+
+
+####  通过 VLC Player 访问内网 vlc 流媒体应用 
+
+客户端安装 VLC Player，打开 媒体- 打开网络串流，在输入框中输入 访问流媒体服务的 takin 域名地址,点击播放即可
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/5da7c204-3a0c-450b-802d-443c24cf4e66)
+
+
+
+
+
