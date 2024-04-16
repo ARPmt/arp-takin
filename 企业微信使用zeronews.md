@@ -56,20 +56,24 @@
 
   企业微信管理员在企业微信后台的 "企业应用" - "应用" 界面下， 点击 "创建应用"，将 内网OA系统添加进来
 
-  <img width="1230" alt="企业微信截图_e9ebf322-bf65-4c4c-96b1-00829ad24025" src="https://github.com/ARPmt/arp-takin/assets/127104785/89578dd5-3016-42e1-9dd0-6fbe99dbd50c">
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/ec216c83-28b6-4bbb-a6e7-4cfa112165c9)
 
   输入 应用 名称、描述信息
 
-  <img width="1120" alt="企业微信截图_474954fd-b840-4c0d-a687-d6565d732894" src="https://github.com/ARPmt/arp-takin/assets/127104785/3828734e-2d7f-4358-99f4-e9ae0fc53646">
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/2403406f-b5dc-4cfb-b250-0336700d1047)
 
   设置应用可见的用户范围
 
-  <img width="1304" alt="企业微信截图_ba3253df-4791-405e-ba22-c4ef8434350e" src="https://github.com/ARPmt/arp-takin/assets/127104785/45b196d4-f09d-428a-844b-3aa68c8a6b5b">
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/a5b819c7-b32f-40ef-b28e-32edab728e30)
 
-  点击 "应用主页" 的 "设置"， 设置应用的域名站点， 选择 "网页"， 然后 输入 域名地址： zerooa.takin.cc
+  点击 "应用主页" 的 "设置"， 设置应用的域名站点， 选择 "网页"， 然后 
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/50dd35b5-ceda-41d4-ac5a-df6548a7bd30)
+
+  输入 域名地址： zerooa.takin.cc
   
-  <img width="710" alt="企业微信截图_596be15e-1659-46a6-b877-e6bd4d8178dc" src="https://github.com/ARPmt/arp-takin/assets/127104785/fcc865e5-dcff-4c08-a282-1dda9a50cf18">
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/05c7aaf2-d4d8-4da4-996f-63d50bf48957)
 
   应用添加 完成后，在 应用列表中 可查看添加好的应用
 
-  <img width="793" alt="企业微信截图_64f19007-f193-41ee-bf00-6487b133bf7c" src="https://github.com/ARPmt/arp-takin/assets/127104785/eac86a88-6b20-4d42-832c-15a556519be7">
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/ebf6bcaa-1ac5-4494-9adb-9f8a9e9797fc)
