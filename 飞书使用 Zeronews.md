@@ -93,7 +93,10 @@
 
 ![image](https://github.com/ARPmt/arp-takin/assets/127104785/e5058ccb-a759-4c90-a779-0e36b32ca88d)
 
-   
+10. 用户可以在飞书工作台，可查看并使用该应用
+
+![image](https://github.com/ARPmt/arp-takin/assets/127104785/850f7686-c74e-4883-8762-f4c06e228874)
+
 
 
 
